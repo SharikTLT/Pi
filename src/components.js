@@ -35,14 +35,33 @@ Crafty.c('PlayerCharacter', {
 });
 
 Crafty.c('MapCell', {
+	selected:false,
 	init:function(){
 		this.requires('Actor, SFloor, Mouse');
 		this.bind('MouseOver', function(){
 			this.sprite(32, 0, 32, 32);
 		});
 		this.bind('MouseOut', function(){
-			this.sprite(0, 0, 32, 32);
+			this.selectCurrentState();
 		});
+		this.bind('MouseUp', function(){
+			console.log('click');
+			if(this.selected){
+				this.selected = false;
+				this.sprite(0, 0, 32, 32);
+			}else{
+				this.selected = true;
+				this.sprite(64, 0, 32, 32);
+			}
+			
+		});
+	},
+	selectCurrentState:function(){
+		if(this.selected){
+				this.sprite(64, 0, 32, 32);
+			}else{
+				this.sprite(0, 0, 32, 32);
+			}
 	}
 
 	
