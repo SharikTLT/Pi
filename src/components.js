@@ -28,8 +28,22 @@ init: function() {
 
 Crafty.c('PlayerCharacter', {
   init: function() {
-    this.requires('Actor, Fourway, Color')
+    this.requires('Actor, Fourway, Color, Grid')
       .fourway(4)
       .color('white');
   }
+});
+
+Crafty.c('MapCell', {
+	init:function(){
+		this.requires('Actor, SFloor, Mouse');
+		this.bind('MouseOver', function(){
+			this.sprite(32, 0, 32, 32);
+		});
+		this.bind('MouseOut', function(){
+			this.sprite(0, 0, 32, 32);
+		});
+	}
+
+	
 });

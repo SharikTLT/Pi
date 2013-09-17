@@ -20,7 +20,7 @@ Game = {
     // Start crafty and set a background color so that we can see it's working
     Crafty.init(Game.win.width, Game.win.height);
     Crafty.background('blue');
-    
+    Crafty.sprite("assets/32_floor.png", {SFloor:[0,0,32,32]});
     Crafty.scene("test");
   }
 }
