@@ -18,7 +18,67 @@ Crafty.c('Grid', {
     }
   }
 });
+/*
+	Map
+*/
+Crafty.c('PiLogicMapCell', {
+    type:null,
+    canWalk:true,
+    canSee:true,
+    object:null,
+    init:function(){
+    	this.requires('Grid');
+    },
+    buildCell:function(attr){
+    	for(var i in attr){
+    		if(this[i]!=undefined){
+    			this[i]=attr[i];
+    		}
+    	}
+    	return this;
+    },
+   	putOn:function(obj){
+   		if(this.canWalk==false) return false;
+   		this.object = null;
+   		this.object = obj;
+   	}
+});
 
+Crafty.c('PiLogicMap', {
+	mapArr:[],
+	sizes:{
+		w:null,
+		h:null
+	},
+	buildMap:function(width, height, mapString){
+		this.sizes.w = width;
+		this.sizes.h = height;
+		this.mapArr = this.parseMapString(mapString);
+	},
+	parseMapString:function(str){
+		var totalCells = this.sizes.w*this.sizes.h;
+		if(totalCells != str.length) throw "Sizes and mapString does not match";
+		
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+	Units
+*/
 Crafty.c('Actor', {
 init: function() {
     this.requires('2D, Canvas, Grid');
